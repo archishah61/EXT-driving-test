@@ -1,9 +1,9 @@
 // controllers/questionController.js
-const {Answer } = require('../models/Answer');
-const { Question } = require('../models/Question');
-const { Category } = require('../models/Category');
+const {Answer } = require('../models');
+const { Question } = require('../models');
+const { Category } = require('../models');
 const { Op } = require('sequelize');
-const { sequelize } = require('../config/db');
+const { sequelize } = require('../models');
 const APIError = require('../utils/APIError');
 
 exports.getAllQuestions = async (req, res, next) => {
@@ -11,8 +11,8 @@ exports.getAllQuestions = async (req, res, next) => {
     const questions = await Question.findAll({
       where: { status: 'active' },
       include: [
-        { model: Answer, where: { status: 'active' }, required: false },
-        { model: Category }
+        { model: Answer, where: { status: 'active' }, required: false , as: 'answers' },
+        { model: Category , as: 'category'}
       ],
       order: [['created_at', 'DESC']]
     });
@@ -38,9 +38,10 @@ exports.getRandomQuestions = async (req, res, next) => {
         { 
           model: Answer,
           where: { status: 'active' },
-          required: true
+          required: true,
+          as: 'answers'
         },
-        { model: Category }
+        { model: Category , as: 'category' }
       ]
     });
 

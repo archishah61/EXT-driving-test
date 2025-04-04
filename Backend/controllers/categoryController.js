@@ -1,9 +1,10 @@
 // controllers/categoryController.js
-const {Answer } = require('../models/Answer');
-const { Question } = require('../models/Question');
-const { Category } = require('../models/Category');
+const {Answer } = require('../models');
+const { Question } = require('../models');
+const { Category } = require('../models');
 const { Op } = require('sequelize');
 const APIError = require('../utils/APIError');
+const { sequelize } = require('../models');
 
 exports.getAllCategories = async (req, res, next) => {
   try {

@@ -1,33 +1,37 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db'); // Adjust path as necessary
 
-const Question = sequelize.define(
-    'Question',
+const Test = sequelize.define(
+    'Test',
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        testId: {
-            type: DataTypes.UUID,
-            references: {
-                model: 'tests',
-                key: 'id',
-            },
-            onDelete: 'CASCADE',
-        },
-        questionText: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        questionImg: {
-            type: DataTypes.TEXT,
+        title: {
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         description: {
             type: DataTypes.TEXT,
             allowNull: true,
+        },
+        type: {
+            type: DataTypes.ENUM('car', 'bike'),
+            allowNull: false,
+        },
+        level: {
+            type: DataTypes.ENUM('easy', 'medium', 'hard'),
+            allowNull: false,
+        },
+        totalQuestions: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        mistakesAllowed: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         createdBy: {
             type: DataTypes.UUID,
@@ -39,22 +43,17 @@ const Question = sequelize.define(
         },
     },
     {
-        tableName: 'questions',
+        tableName: 'tests',
         timestamps: true,
     }
 );
 
-Question.associate = function (models) {
-    Question.belongsTo(models.Test, {
+Test.associate = function (models) {
+    Test.hasMany(models.Question, {
         foreignKey: 'testId',
-        as: 'test',
-    });
-
-    Question.hasMany(models.QuestionOption, {
-        foreignKey: 'questionId',
-        as: 'options',
+        as: 'questions',
         onDelete: 'CASCADE',
     });
 };
 
-module.exports = Question;
+module.exports = Test;

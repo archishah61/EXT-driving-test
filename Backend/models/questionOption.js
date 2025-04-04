@@ -1,33 +1,33 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db'); // Adjust path as necessary
 
-const Question = sequelize.define(
-    'Question',
+const QuestionOption = sequelize.define(
+    'QuestionOption',
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
-        testId: {
+        questionId: {
             type: DataTypes.UUID,
             references: {
-                model: 'tests',
+                model: 'questions',
                 key: 'id',
             },
             onDelete: 'CASCADE',
         },
-        questionText: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-        },
-        questionImg: {
+        optionText: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: true,
+            allowNull: false,
+        },
+        isCorrect: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         },
         createdBy: {
             type: DataTypes.UUID,
@@ -39,22 +39,16 @@ const Question = sequelize.define(
         },
     },
     {
-        tableName: 'questions',
+        tableName: 'question_options',
         timestamps: true,
     }
 );
 
-Question.associate = function (models) {
-    Question.belongsTo(models.Test, {
-        foreignKey: 'testId',
-        as: 'test',
-    });
-
-    Question.hasMany(models.QuestionOption, {
+QuestionOption.associate = function (models) {
+    QuestionOption.belongsTo(models.Question, {
         foreignKey: 'questionId',
-        as: 'options',
-        onDelete: 'CASCADE',
+        as: 'question',
     });
 };
 
-module.exports = Question;
+module.exports = QuestionOption;
