@@ -4,6 +4,7 @@ import TestTabs from '../../component/HomeComponents/TestTabs'
 import HowItWorks from '../../component/HomeComponents/HowItWorks'
 import QuestionDesigned from '../../component/HomeComponents/QuestionDesigned'
 import PerfectCompanion from '../../component/HomeComponents/PerfectCompanion'
+import ScrollToTopProgress from '../../component/ScrollTopProgress'
 export default function Home() {
   return (
     <>
@@ -12,6 +13,7 @@ export default function Home() {
       <HowItWorks/>
       <QuestionDesigned/>
       <PerfectCompanion/>
+      <ScrollToTopProgress/>
     </>
   )
 }
