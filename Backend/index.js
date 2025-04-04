@@ -30,7 +30,7 @@ db.sequelize.authenticate()
   .then(() => {
     console.log('Database connection has been established successfully.');
     // Sync all models
-    return db.sequelize.sync({ force: false }); // Set force: true to drop tables and recreate
+    return db.sequelize.sync({ force: false , alter: false}); // Set force: true to drop tables and recreate
   })
   .then(() => {
     console.log('Database synced');

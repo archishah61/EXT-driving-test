@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false
       },
+      explanation: {  // Added this new field
+        type: DataTypes.TEXT,
+        allowNull: true  // Can be null if no explanation needed
+      },
       is_correct: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
