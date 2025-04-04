@@ -4,9 +4,9 @@ import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
-import hero1 from '../../../public/blueheropic.jpg'
-import hero2 from '../../../public/greenheropic.jpg'
-import hero3 from '../../../public/pinkheropic.jpg'
+import hero1 from '/heropic1.jpg'
+import hero2 from '/heropic2.jpg'
+import hero3 from '/heropic3.jpg'
 export default function Hero() {
   // Theme data for slides
   const slides = [
