@@ -61,7 +61,7 @@ const Header = () => {
               <ChevronDown size={16} className="text-gray-500 transition-transform duration-300 group-hover:rotate-180" />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 z-50 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
                 openDropdown === "blog" ? "opacity-100 translate-y-0" : "opacity-0 invisible -translate-y-2"
               }`}
             >
@@ -84,7 +84,7 @@ const Header = () => {
               <ChevronDown size={16} className="text-gray-500 transition-transform duration-300 group-hover:rotate-180" />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+              className={`absolute left-0 z-50 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
                 openDropdown === "resources" ? "opacity-100 translate-y-0" : "opacity-0 invisible -translate-y-2"
               }`}
             >
