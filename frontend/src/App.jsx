@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeLayout from "./component/HomeLayout/HomeLayout";
 
 import Home from "./pages/Home/Home";
-import AboutUs from "./pages/Home/About";
-import ContactUs from "./pages/Home/Contact";
+import AboutUs from "./pages/About/About";
+import ContactUs from "./pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
