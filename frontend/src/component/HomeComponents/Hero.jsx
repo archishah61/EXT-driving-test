@@ -49,7 +49,7 @@ export default function Hero() {
   ];
 
   return (
-    <div className="w-full bg-gray-50 overflow-hidden relative">
+    <div className="w-full bg-white overflow-hidden relative">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden z-0 opacity-40">
         <div className="absolute top-0 left-0 w-64 h-64 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -83,7 +83,7 @@ export default function Hero() {
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id} className="max-w-[90%] md:max-w-[70%] slide-animation">
-            <div className={`flex flex-col md:flex-row items-center max-w-6xl mx-auto px-6 py-16 ${slide.bgColor} rounded-xl shadow-lg border border-white border-opacity-20 backdrop-filter backdrop-blur-sm`}>
+            <div className={`flex flex-col md:flex-row items-center max-w-6xl mx-auto px-6 py-16 ${slide.bgColor} rounded-xl shadow-lg border border-white border-opacity-20 backdrop-filter backdrop-blur-sm h-[600px]`}>
               {/* Content Area */}
               <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0 z-10">
                 <div className="slide-content">
@@ -106,7 +106,7 @@ export default function Hero() {
               </div>
 
               {/* Image Area with animated decorations */}
-              <div className="w-full md:w-1/2 z-0">
+              <div className="w-full md:w-1/2 z-0 flex items-center justify-center">
                 <div className="relative perspective">
                   {/* Decorative elements specific to each slide */}
                   <div className={`absolute -top-6 -left-6 w-24 h-24 bg-${slide.color}-100 rounded-full opacity-70 animate-pulse`}></div>
@@ -122,7 +122,7 @@ export default function Hero() {
                     <img
                       src={slide.image}
                       alt={`Slide ${slide.id}`}
-                      className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out"
+                      className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out object-cover h-64 w-full"
                     />
 
                     <div className="absolute inset-0 border-2 border-white border-opacity-20 rounded-lg transform scale-105 animate-pulse-slow"></div>
@@ -259,19 +259,21 @@ export default function Hero() {
 
         /* Custom Swiper Styles */
         :global(.swiper-pagination) {
-          position: relative;
-          bottom: -10px;
+          position: absolute;
+          bottom: -20px;
           display: flex;
           justify-content: center;
-          margin-top: 2rem;
+          width: 100%;
+          padding-top: 2rem;
+          padding-bottom: 1rem;
         }
 
         :global(.swiper-pagination-bullet) {
-          width: 10px;
-          height: 10px;
+          width: 12px;
+          height: 12px;
           background: rgba(226, 232, 240, 0.8);
           opacity: 1;
-          margin: 0 6px;
+          margin: 0 8px;
           transition: all 0.3s ease;
           position: relative;
         }
@@ -291,7 +293,7 @@ export default function Hero() {
 
         :global(.swiper-pagination-bullet-active) {
           background: #22c55e; /* Green color */
-          transform: scale(1.2);
+          transform: scale(1.3);
           box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
         }
 
