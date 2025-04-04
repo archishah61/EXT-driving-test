@@ -118,12 +118,13 @@ export default function Hero() {
 
                   {/* Main image with enhanced effects */}
                   <div className="image-container relative transform hover:rotate-1 transition-all duration-700 ease-in-out">
-                    <div className={`absolute inset-0 bg-gradient-to-tr ${slide.gradientFrom} ${slide.gradientTo} opacity-20 rounded-lg -m-2 blur-lg animate-pulse-slow`}></div>
+                    <div className={`absolute inset-0 opacity-20 rounded-lg -m-2 blur-lg animate-pulse-slow`}></div>
                     <img
                       src={slide.image}
                       alt={`Slide ${slide.id}`}
-                      className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out object-cover h-64 w-full"
+                      className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out object-cover h-96 w-full"
                     />
+
 
                     <div className="absolute inset-0 border-2 border-white border-opacity-20 rounded-lg transform scale-105 animate-pulse-slow"></div>
                   </div>
