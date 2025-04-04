@@ -1,59 +1,50 @@
 // models/Category.js
-const sequelize = require('sequelize');
-const { DataTypes } = require('sequelize');
-const { Question } = require('./Question'); // Adjust the path as necessary
-
-const Category = sequelize.define('Category', {
-    id: {
+module.exports = (sequelize, DataTypes) => {
+    const Category = sequelize.define('Category', {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },
-    name: {
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    description: {
+      },
+      description: {
         type: DataTypes.TEXT,
         allowNull: true
-    },
-    status: {
+      },
+      status: {
         type: DataTypes.ENUM('active', 'inactive'),
         defaultValue: 'active'
-    },
-    created_by: {
+      },
+      created_by: {
         type: DataTypes.INTEGER,
         allowNull: true
-    },
-    updated_by: {
+      },
+      updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true
-    },
-    created_at: {
+      },
+      created_at: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-    },
-    updated_at: {
+      },
+      updated_at: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
-    }
-}, {
-    timestamps: false,
-    tableName: 'Categories'
-});
-
-
-Category.hasMany(Question, {
-    foreignKey: 'category_id',
-    as: 'questions'
-});
-
-
-// In Question model
-
-Question.belongsTo(Category, {
-    foreignKey: 'category_id',
-    as: 'category'
-});
-
-module.exports = Category;
+      }
+    }, {
+      timestamps: false,
+      tableName: 'Categories'
+    });
+  
+    Category.associate = function(models) {
+      Category.hasMany(models.Question, {
+        foreignKey: 'category_id',
+        as: 'questions'
+      });
+    };
+  
+    return Category;
+  };
