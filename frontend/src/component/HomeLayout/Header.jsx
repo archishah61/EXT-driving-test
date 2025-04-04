@@ -38,18 +38,17 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
+          <Link to="/" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             Home
           </Link>
 
-          <Link href="/about" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
+          <Link to="/about" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             About
           </Link>
 
           <Link to="/contact" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             Contact Us
           </Link>
-
 
           {/* Blog Dropdown */}
           <div
@@ -59,30 +58,22 @@ const Header = () => {
           >
             <div className="flex items-center space-x-1 text-gray-700 text-sm hover:text-green-600 transition-colors cursor-pointer">
               <span>Blog</span>
-              <ChevronDown
-                size={16}
-                className={`text-gray-500 transition-transform duration-300 group-hover:transform group-hover:rotate-180`}
-              />
+              <ChevronDown size={16} className="text-gray-500 transition-transform duration-300 group-hover:rotate-180" />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${openDropdown === "blog"
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 invisible -translate-y-2"
-                }`}
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+                openDropdown === "blog" ? "opacity-100 translate-y-0" : "opacity-0 invisible -translate-y-2"
+              }`}
             >
               {dropdownContent.blog.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.to}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
+                <Link key={item.name} to={item.to} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   {item.name}
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Blog Dropdown */}
+          {/* Resources Dropdown */}
           <div
             className="relative group"
             onMouseEnter={() => setOpenDropdown("resources")}
@@ -90,22 +81,17 @@ const Header = () => {
           >
             <div className="flex items-center space-x-1 text-gray-700 text-sm hover:text-green-600 transition-colors cursor-pointer">
               <span>Resources</span>
-              <ChevronDown
-                size={16}
-                className={`text-gray-500 transition-transform duration-300 group-hover:transform group-hover:rotate-180`}
-              />
+              <ChevronDown size={16} className="text-gray-500 transition-transform duration-300 group-hover:rotate-180" />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${openDropdown === "resources"
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 invisible -translate-y-2"
-                }`}
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+                openDropdown === "resources" ? "opacity-100 translate-y-0" : "opacity-0 invisible -translate-y-2"
+              }`}
             >
               {dropdownContent.resources.map((item) => (
                 <Link key={item.name} to={item.to} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   {item.name}
                 </Link>
-
               ))}
             </div>
           </div>
@@ -114,7 +100,7 @@ const Header = () => {
         {/* Authentication button */}
         <div className="flex items-center">
           <Link
-            href="#"
+            to="#"
             className="text-sm text-white font-medium px-4 py-2 bg-green-600 rounded-md hover:bg-green-700 transition duration-300"
           >
             Register Now →
