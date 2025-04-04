@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
 const Header = () => {
@@ -8,19 +9,19 @@ const Header = () => {
   // Sample dropdown content
   const dropdownContent = {
     products: [
-      { name: "Product 1", href: "#" },
-      { name: "Product 2", href: "#" },
-      { name: "Product 3", href: "#" },
+      { name: "Product 1", to: "/product-1" },
+      { name: "Product 2", to: "/product-2" },
+      { name: "Product 3", to: "/product-3" },
     ],
     resources: [
-      { name: "Documentation", href: "#" },
-      { name: "Guides", href: "#" },
-      { name: "API Reference", href: "#" },
+      { name: "Documentation", to: "/docs" },
+      { name: "Guides", to: "/guides" },
+      { name: "API Reference", to: "/api-reference" },
     ],
     blog: [
-      { name: "Latest Posts", href: "#" },
-      { name: "Categories", href: "#" },
-      { name: "Featured", href: "#" },
+      { name: "Latest Posts", to: "/blog/latest" },
+      { name: "Categories", to: "/blog/categories" },
+      { name: "Featured", to: "/blog/featured" },
     ],
   };
 
@@ -37,21 +38,21 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#" className="text-gray-900 text-sm font-medium">
+          <Link to="/" className="text-gray-900 text-sm font-medium">
             Home
-          </a>
+          </Link>
 
-          <a href="/about" className="text-gray-900 text-sm font-medium">
+          <Link to="/about" className="text-gray-900 text-sm font-medium">
             About
-          </a>
+          </Link>
 
-          <a href="/contact" className="text-gray-900 text-sm font-medium">
+          <Link to="/contact" className="text-gray-900 text-sm font-medium">
             Contact
-          </a>
+          </Link>
 
-          <a href="#" className="text-gray-900 text-sm font-medium">
+          <Link to="/pricing" className="text-gray-900 text-sm font-medium">
             Pricing
-          </a>
+          </Link>
 
           {/* Blog Dropdown */}
           <div
@@ -67,19 +68,20 @@ const Header = () => {
               />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${openDropdown === "blog"
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+                openDropdown === "blog"
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 invisible -translate-y-2"
-                }`}
+              }`}
             >
               {dropdownContent.blog.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.to}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -87,18 +89,18 @@ const Header = () => {
 
         {/* Authentication buttons */}
         <div className="flex items-center space-x-2">
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="text-sm text-gray-700 font-medium px-4 py-2 rounded-md hover:bg-gray-50 transition duration-300"
           >
             Log in
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/signup"
             className="text-sm text-white font-medium px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-800 transition duration-300"
           >
             Sign up
-          </a>
+          </Link>
         </div>
       </div>
     </header>
