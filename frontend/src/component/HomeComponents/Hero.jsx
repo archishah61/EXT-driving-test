@@ -4,7 +4,9 @@ import { Autoplay, Pagination, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
-
+import hero1 from '../../../public/blueheropic.jpg'
+import hero2 from '../../../public/greenheropic.jpg'
+import hero3 from '../../../public/pinkheropic.jpg'
 export default function Hero() {
   // Theme data for slides
   const slides = [
@@ -17,7 +19,8 @@ export default function Hero() {
       color: "green",
       gradientFrom: "from-green-400",
       gradientTo: "to-teal-500",
-      bgColor: "bg-gradient-to-br from-green-50 to-teal-50"
+      bgColor: "bg-gradient-to-br from-green-50 to-teal-50",
+      image: hero2, // Green-themed image
     },
     {
       id: 2,
@@ -28,7 +31,8 @@ export default function Hero() {
       color: "blue",
       gradientFrom: "from-blue-400",
       gradientTo: "to-indigo-500",
-      bgColor: "bg-gradient-to-br from-blue-50 to-indigo-50"
+      bgColor: "bg-gradient-to-br from-blue-50 to-indigo-50",
+      image: hero1, // Blue-themed image
     },
     {
       id: 3,
@@ -39,7 +43,8 @@ export default function Hero() {
       color: "purple",
       gradientFrom: "from-purple-400",
       gradientTo: "to-pink-500",
-      bgColor: "bg-gradient-to-br from-purple-50 to-pink-50"
+      bgColor: "bg-gradient-to-br from-purple-50 to-pink-50",
+      image: hero3, // Pink-themed image
     }
   ];
 
@@ -106,19 +111,20 @@ export default function Hero() {
                   {/* Decorative elements specific to each slide */}
                   <div className={`absolute -top-6 -left-6 w-24 h-24 bg-${slide.color}-100 rounded-full opacity-70 animate-pulse`}></div>
                   <div className={`absolute -bottom-8 -right-8 w-32 h-32 bg-${slide.color}-200 rounded-full opacity-60 animate-pulse delay-300`}></div>
-                  
+
                   {/* Floating shapes */}
                   <div className={`absolute top-1/4 -left-4 w-12 h-12 ${slide.color === 'green' ? 'bg-emerald-300' : slide.color === 'blue' ? 'bg-sky-300' : 'bg-fuchsia-300'} rounded-lg opacity-50 animate-float-slow`}></div>
                   <div className={`absolute bottom-1/4 right-0 w-16 h-16 ${slide.color === 'green' ? 'bg-teal-200' : slide.color === 'blue' ? 'bg-indigo-200' : 'bg-violet-200'} rounded-full opacity-60 animate-float animation-delay-1000`}></div>
-                  
+
                   {/* Main image with enhanced effects */}
                   <div className="image-container relative transform hover:rotate-1 transition-all duration-700 ease-in-out">
                     <div className={`absolute inset-0 bg-gradient-to-tr ${slide.gradientFrom} ${slide.gradientTo} opacity-20 rounded-lg -m-2 blur-lg animate-pulse-slow`}></div>
-                    <img 
-                      src="/api/placeholder/500/400" 
-                      alt={`Slide ${slide.id}`}
-                      className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out"
-                    />
+                    <img
+  src={slide.image}
+  alt={`Slide ${slide.id}`}
+  className="relative z-10 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-700 ease-in-out"
+/>
+
                     <div className="absolute inset-0 border-2 border-white border-opacity-20 rounded-lg transform scale-105 animate-pulse-slow"></div>
                   </div>
                 </div>
