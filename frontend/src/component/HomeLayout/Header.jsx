@@ -8,11 +8,6 @@ const Header = () => {
 
   // Sample dropdown content
   const dropdownContent = {
-    products: [
-      { name: "Product 1", to: "/product-1" },
-      { name: "Product 2", to: "/product-2" },
-      { name: "Product 3", to: "/product-3" },
-    ],
     resources: [
       { name: "Documentation", to: "/docs" },
       { name: "Guides", to: "/guides" },
@@ -30,37 +25,38 @@ const Header = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="h-6 w-6 bg-black rounded-md flex items-center justify-center">
-            <div className="h-2 w-2 bg-white rounded-sm"></div>
+          <div className="flex">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 4L4 8L8 12L12 8L8 4Z" fill="#4CAF50" />
+              <path d="M16 4L12 8L16 12L20 8L16 4Z" fill="white" stroke="#333" strokeWidth="1" />
+              <path d="M8 12L4 16L8 20L12 16L8 12Z" fill="white" stroke="#333" strokeWidth="1" />
+              <path d="M16 12L12 16L16 20L20 16L16 12Z" fill="#4CAF50" />
+            </svg>
           </div>
-          <span className="font-medium text-gray-900">Untitled UI</span>
+          <span className="font-bold text-gray-800 text-lg">Nexcent</span>
         </div>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-gray-900 text-sm font-medium">
+          <Link href="/" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             Home
           </Link>
 
-          <Link to="/about" className="text-gray-900 text-sm font-medium">
+          <Link href="/about" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             About
           </Link>
 
-          <Link to="/contact" className="text-gray-900 text-sm font-medium">
-            Contact
-          </Link>
-
-          <Link to="/pricing" className="text-gray-900 text-sm font-medium">
-            Pricing
-          </Link>
-
+          <a href="/contact" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
+            Contact Us
+          </a>
+  
           {/* Blog Dropdown */}
           <div
             className="relative group"
             onMouseEnter={() => setOpenDropdown("blog")}
             onMouseLeave={() => setOpenDropdown(null)}
           >
-            <div className="flex items-center space-x-1 text-gray-900 text-sm font-medium cursor-pointer">
+            <div className="flex items-center space-x-1 text-gray-700 text-sm hover:text-green-600 transition-colors cursor-pointer">
               <span>Blog</span>
               <ChevronDown
                 size={16}
@@ -85,22 +81,48 @@ const Header = () => {
               ))}
             </div>
           </div>
+
+              {/* Blog Dropdown */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setOpenDropdown("resources")}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <div className="flex items-center space-x-1 text-gray-700 text-sm hover:text-green-600 transition-colors cursor-pointer">
+              <span>Resources</span>
+              <ChevronDown
+                size={16}
+                className={`text-gray-500 transition-transform duration-300 group-hover:transform group-hover:rotate-180`}
+              />
+            </div>
+            <div
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
+                openDropdown === "resources"
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 invisible -translate-y-2"
+              }`}
+            >
+              {dropdownContent.resources.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
         </nav>
 
-        {/* Authentication buttons */}
-        <div className="flex items-center space-x-2">
-          <Link
-            to="/login"
-            className="text-sm text-gray-700 font-medium px-4 py-2 rounded-md hover:bg-gray-50 transition duration-300"
+        {/* Authentication button */}
+        <div className="flex items-center">
+          <a
+            href="#"
+            className="text-sm text-white font-medium px-4 py-2 bg-green-600 rounded-md hover:bg-green-700 transition duration-300"
           >
-            Log in
-          </Link>
-          <Link
-            to="/signup"
-            className="text-sm text-white font-medium px-4 py-2 bg-gray-900 rounded-md hover:bg-gray-800 transition duration-300"
-          >
-            Sign up
-          </Link>
+            Register Now →
+          </a>
         </div>
       </div>
     </header>
