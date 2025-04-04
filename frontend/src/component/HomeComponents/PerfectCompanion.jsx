@@ -183,7 +183,7 @@ function PerfectCompanion() {
               <div className="bg-green-100 rounded-lg shadow-lg p-6">
                 <div className="w-full h-full flex justify-center">
                   <img 
-                    src="/public/PerfectCompanion.png" 
+                    src="/PerfectCompanion.png" 
                     alt="Driver studying with practice tests" 
                     className="w-full object-contain rounded"
                   />
