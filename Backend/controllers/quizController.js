@@ -1,49 +1,47 @@
 // controllers/quizController.js
-const { QuizSession } = require('../models');
-const {Answer } = require('../models');
-const { Question } = require('../models');
-const { Category } = require('../models');
+const { QuizSession } = require('../models/QuizSession');
+const {Answer } = require('../models/Answer');
+const { Question } = require('../models/Question');
+const { Category } = require('../models/Category');
 const { Op } = require('sequelize');
 const APIError = require('../utils/APIError');
-const { sequelize } = require('../models');
 
 exports.startQuiz = async (req, res, next) => {
-    try {
-      const sessionId = generateSessionId();
-      const questions = await Question.findAll({
+  try {
+    const sessionId = generateSessionId();
+    const questions = await Question.findAll({
+      where: { status: 'active' },
+      order: sequelize.random(),
+      limit: 15,
+      include: [{
+        model: Answer,
         where: { status: 'active' },
-        order: sequelize.random(),
-        limit: 15,
-        include: [{
-          model: Answer,
-          as: 'answers', // This should match what you use below
-          where: { status: 'active' },
-          required: true
-        }]
-      });
-  
-      const quizSession = await QuizSession.create({
-        session_id: sessionId,
-        questions: questions.map(q => q.id),
-        answers: {}
-      });
-  
-      res.json({
-        sessionId: quizSession.session_id,
-        questions: questions.map(q => ({
-          id: q.id,
-          question_text: q.question_text,
-          image_url: q.image_url,
-          answers: q.answers.map(a => ({ // Changed from q.Answers to q.answers
-            id: a.id,
-            answer_text: a.answer_text
-          }))
+        required: true
+      }]
+    });
+
+    const quizSession = await QuizSession.create({
+      session_id: sessionId,
+      questions: questions.map(q => q.id),
+      answers: {}
+    });
+
+    res.json({
+      sessionId: quizSession.session_id,
+      questions: questions.map(q => ({
+        id: q.id,
+        question_text: q.question_text,
+        image_url: q.image_url,
+        answers: q.Answers.map(a => ({
+          id: a.id,
+          answer_text: a.answer_text
         }))
-      });
-    } catch (error) {
-      next(error);
-    }
-  };
+      }))
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.submitAnswer = async (req, res, next) => {
   try {
