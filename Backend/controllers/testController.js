@@ -1,4 +1,4 @@
-const { Test } = require('../models');
+const Test  = require('../models/test');
 const APIError = require('../utils/APIError');
 
 // Create a Test

@@ -1,44 +1,40 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
 dotenv.config();
-const sequelize = require('./config/db');
-// index.js or app.js
-const db = require('./models');
-const PORT=8000;
+
+const sequelize = require('./config/db'); // ✅ Sequelize instance
+const PORT = process.env.PORT || 8000;
 
 const app = express();
+
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-    cors({
-        origin: "http://localhost:5173", // Your frontend URL
-        credentials: true, // Allow cookies
-    })
+  cors({
+    origin: "http://localhost:5173", // ✅ Frontend URL
+    credentials: true,
+  })
 );
 
-app.use("/api", require("./routes/index")); // Adjust the path as necessary
+// All routes entry point
+app.use("/api", require("./routes/index"));
 
-
-// Test the connection
-db.sequelize.authenticate()
+// ✅ Test DB connection and sync
+sequelize.authenticate()
   .then(() => {
-    console.log('Database connection has been established successfully.');
-    // Sync all models
-    return db.sequelize.sync({ force: false , alter: false}); // Set force: true to drop tables and recreate
+    console.log('✅ Database connection established.');
+    return sequelize.sync({ force: false, alter: false });
   })
   .then(() => {
-    console.log('Database synced');
-    // Start your server
+    console.log('🔄 Models synced with the database.');
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`🚀 Server is running on http://localhost:${PORT}`);
     });
   })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
+  .catch((error) => {
+    console.error('❌ Failed to connect to the database:', error);
   });
