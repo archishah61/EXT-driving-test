@@ -46,10 +46,11 @@ const Header = () => {
             About
           </Link>
 
-          <a href="/contact" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
+          <Link to="/contact" className="text-gray-700 text-sm hover:text-green-600 transition-colors">
             Contact Us
-          </a>
-  
+          </Link>
+
+
           {/* Blog Dropdown */}
           <div
             className="relative group"
@@ -64,11 +65,10 @@ const Header = () => {
               />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
-                openDropdown === "blog"
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 invisible -translate-y-2"
-              }`}
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${openDropdown === "blog"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 invisible -translate-y-2"
+                }`}
             >
               {dropdownContent.blog.map((item) => (
                 <Link
@@ -82,7 +82,7 @@ const Header = () => {
             </div>
           </div>
 
-              {/* Blog Dropdown */}
+          {/* Blog Dropdown */}
           <div
             className="relative group"
             onMouseEnter={() => setOpenDropdown("resources")}
@@ -96,20 +96,16 @@ const Header = () => {
               />
             </div>
             <div
-              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${
-                openDropdown === "resources"
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 invisible -translate-y-2"
-              }`}
+              className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 transition-all duration-300 ease-in-out ${openDropdown === "resources"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 invisible -translate-y-2"
+                }`}
             >
               {dropdownContent.resources.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
+                <Link key={item.name} to={item.to} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   {item.name}
-                </a>
+                </Link>
+
               ))}
             </div>
           </div>
@@ -117,12 +113,12 @@ const Header = () => {
 
         {/* Authentication button */}
         <div className="flex items-center">
-          <a
+          <Link
             href="#"
             className="text-sm text-white font-medium px-4 py-2 bg-green-600 rounded-md hover:bg-green-700 transition duration-300"
           >
             Register Now →
-          </a>
+          </Link>
         </div>
       </div>
     </header>
