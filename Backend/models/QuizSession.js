@@ -1,7 +1,7 @@
 // models/QuizSession.js
-const sequelize = require('sequelize');
+const sequelize = require("../config/db"); // Adjust path as needed
 const { DataTypes } = require('sequelize');
-
+module.exports = (sequelize, DataTypes) => {
 const QuizSession = sequelize.define('QuizSession', {
     id: {
         type: DataTypes.INTEGER,
@@ -42,5 +42,5 @@ const QuizSession = sequelize.define('QuizSession', {
     tableName: 'QuizSessions'
 });
 
-
-module.exports = QuizSession;
+return QuizSession;
+}
