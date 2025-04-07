@@ -5,15 +5,17 @@ import HowItWorks from '../../component/HomeComponents/HowItWorks'
 import QuestionDesigned from '../../component/HomeComponents/QuestionDesigned'
 import PerfectCompanion from '../../component/HomeComponents/PerfectCompanion'
 import ScrollToTopProgress from '../../component/HomeComponents/ScrollTopProgress'
+import HeroSection from '../../component/HomeComponents/HeroSection'
 export default function Home() {
   return (
     <>
-      <Hero />
-      <TestTabs/>
-      <HowItWorks/>
-      <QuestionDesigned/>
-      <PerfectCompanion/>
-      <ScrollToTopProgress/>
+      <HeroSection /> 
+      {/* <Hero /> */}
+      <TestTabs />
+      <HowItWorks />
+      <QuestionDesigned />
+      <PerfectCompanion />
+      <ScrollToTopProgress />
     </>
   )
 }
